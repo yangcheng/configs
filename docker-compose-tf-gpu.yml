@@ -1,0 +1,19 @@
+version: '3.5'
+
+services:
+  tensorflow2:
+    container_name: tf2
+    image: tensorflow/tensorflow:2.8.0-gpu-jupyter
+    volumes:
+      - ./notebooks:/tf/notebooks
+    ports:
+      - "8888:8888"
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [ gpu ]
+volumes:
+  notebooks:
+
